@@ -1,0 +1,1050 @@
+swagger: "2.0"
+info:
+  title: Api Micro Service settings sefcare
+  description: API de paramattrage de la platforme de sunu - Selcare 1
+  contact:
+    name: "Paul Elie Bohoussou"
+    email: "bohoussoupaulelie@gmail.com"
+  version: 1.0.0
+host: 127.0.0.1:5050
+basePath: /api
+schemes:
+  - http
+  - https
+paths:
+  /countries/:
+    get:
+      tags:
+        - "Countries"
+      security:
+        - Bearer: []
+      summary: Get All Countries
+      produces:
+        - application/json
+      responses:
+        200:
+          description: countries
+          examples:
+            application/json:
+              {
+                "count": 14,
+                "rows":
+                  [
+                    {
+                      "id": 1,
+                      "country_iso_code": "CIV",
+                      "country_name": "Cote d'Ivoire",
+                      "status": 1,
+                      "disabledAt": null,
+                      "createdAt": "2021-03-05T11:15:11.183Z",
+                      "updatedAt": "2021-03-05T11:15:11.183Z",
+                      "Filiales":
+                        [
+                          {
+                            "id": 1,
+                            "filiale_name": "SUNU-CIV-ASSU-01",
+                            "code_filiale": "IARD",
+                            "business_unitId": 1,
+                            "countries_code": "CIV",
+                            "countriesId": 1,
+                            "businessUnit_code": "ASSU-01",
+                            "slug": "sunu-civ-assu-01",
+                            "description": "The First Filiales",
+                            "status": 1,
+                            "disabledAt": null,
+                            "createdAt": "2021-03-05T12:35:07.211Z",
+                            "updatedAt": "2021-03-05T12:35:07.211Z",
+                          },
+                        ],
+                    },
+                  ],
+              }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+        500:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+    post:
+      tags:
+        - "Countries"
+      summary: Create an Countries.
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: country_iso_code
+          required: true
+          type: string
+          description: Code of the Countries.
+        - in: formData
+          name: country_name
+          required: true
+          type: string
+          description: Name of the Countries
+      responses:
+        201:
+          description: Countries created
+          examples:
+            application/json:
+              {
+                "error": false,
+                "data":
+                    {
+                      "id": 1,
+                      "country_iso_code": "CIV",
+                      "country_name": "Cote d'Ivoire",
+                      "status": 1,
+                      "disabledAt": null,
+                      "createdAt": "2021-03-05T11:15:11.183Z",
+                      "updatedAt": "2021-03-05T11:15:11.183Z",
+                      "Filiales":
+                        [
+                          {
+                            "id": 1,
+                            "filiale_name": "SUNU-CIV-ASSU-01",
+                            "code_filiale": "IARD",
+                            "business_unitId": 1,
+                            "countries_code": "CIV",
+                            "countriesId": 1,
+                            "businessUnit_code": "ASSU-01",
+                            "slug": "sunu-civ-assu-01",
+                            "description": "The First Filiales",
+                            "status": 1,
+                            "disabledAt": null,
+                            "createdAt": "2021-03-05T12:35:07.211Z",
+                            "updatedAt": "2021-03-05T12:35:07.211Z",
+                          },
+                        ],
+                    },
+                  ,
+                "message": "New Countries created",
+              }
+        400:
+          description: Missing parameters
+          examples:
+            application/json: { "error": true, "data": [], "message": error }
+        500:
+          description: Hash function errors
+          examples:
+            application/json: { "error": "error description" }
+  /countries/{id}:
+    get:
+      tags:
+        - "Countries"
+      security:
+        - Bearer: []
+      summary: Get One Countries
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: the Countries ID
+      responses:
+        200:
+          description: Countries
+          examples:
+            application/json:
+              {
+                "id": 1,
+                "country_iso_code": "SEN",
+                "country_name": "senegal",
+                "created_at": "2020-08-06T00:27:46.000Z",
+                "updated_at": "2020-08-06T11:53:10.000Z",
+              }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+    put:
+      tags:
+        - "Countries"
+      security:
+        - Bearer: []
+      summary: Update One Countries
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: the Countries ID
+        - in: formData
+          name: country_iso_code
+          required: true
+          type: string
+          description: Code of the Countries
+        - in: formData
+          name: country_name
+          required: true
+          type: string
+          description: Name of the Countries
+      responses:
+        200:
+          description: Products Countries
+          examples:
+            application/json: { "error": false, "message": "Countries updated" }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+
+  /countries/enabled/{id}:
+    put:
+      tags:
+        - "Countries"
+      security:
+        - Bearer: []
+      summary: Enabled countries
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: The countries enobled by ID
+      responses:
+        200:
+          description: countries enabled
+          examples:
+            application/json: { "error": false, "message": "Countries enabled" }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+  /countries/disabled/{id}:
+    put:
+      tags:
+        - "Countries"
+      security:
+        - Bearer: []
+      summary: disabled an countries
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: The countries ID
+      responses:
+        200:
+          description: countries disabled
+          examples:
+            application/json: { "error": false, "message": "countries disabled" }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+
+  /business-units:
+    get:
+      tags:
+        - "business-units"
+      security:
+        - Bearer: []
+      summary: get All business-units
+      produces:
+        - application/json
+      responses:
+        200:
+          description: business-units
+          examples:
+            application/json:
+              {
+                "count": 3,
+                "rows":
+                  [
+                    {
+                      "id": 1,
+                      "business_unit_name": "Santé",
+                      "code_business_unit": "SAN-001",
+                      "slug": "sante",
+                      "description": "The Fisrt Business unit",
+                      "status": 1,
+                      "disabledAt": null,
+                      "createdAt": "2021-03-05T11:45:51.274Z",
+                      "updatedAt": "2021-03-05T11:45:51.274Z",
+                    },
+                  ]
+              }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+    post:
+      tags:
+        - "business-units"
+      security:
+        - Bearer: []
+      summary: create a business-units
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: business_unit_name
+          required: true
+          type: string
+          description: Name of business-units
+        - in: formData
+          name: code_business_unit
+          required: true
+          type: string
+          description: Code of business-units
+        - in: formData
+          name: description
+          required: false
+          type: integer
+          description: description of business-units
+      responses:
+        201:
+          description: Business-units created
+          examples:
+            application/json:
+              {
+                "error": false,
+                "data":
+                  {
+                    "id": 4,
+                    "business_unit_name": "Santé",
+                    "code_business_unit": "ANSIOV",
+                    "status": 1,
+                    "description": "Segments of Four Business-unit",
+                    "disabledAt": "2020-08-06T18:04:15.869Z",
+                    "created_at": "2020-08-06T18:04:15.869Z",
+                    "updated_at": "2020-08-06T18:04:15.869Z",
+                  },
+                "message": "New Segments created",
+              }
+        400:
+          description: error
+          examples:
+            application/json: { "error": true, "data": [], "message": error }
+  /business-units/{id}:
+    get:
+      tags:
+        - "business-units"
+      security:
+        - Bearer: []
+      summary: Get One business-units
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: the business-units ID
+      responses:
+        200:
+          description: business-units
+          examples:
+            application/json:
+              {
+                "id": 1,
+                "business_unit_name": "IARD",
+                "code_business_unit": "IARD",
+                "status": 0,
+                "description": "business-units of test",
+                "created_at": "2020-08-06T00:27:46.000Z",
+                "updated_at": "2020-08-06T11:53:10.000Z",
+              }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+    put:
+      tags:
+        - "business-units"
+      security:
+        - Bearer: []
+      summary: Update One business-units
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: the business-units ID
+        - in: formData
+          name: business_unit_name
+          required: true
+          type: string
+          description: name of the business-units
+        - in: formData
+          name: code_business_unit
+          required: true
+          type: string
+          description: Code of the business-units
+        - in: formData
+          name: description
+          required: true
+          type: text
+          description: Description of the business-units
+      responses:
+        200:
+          description: business-units updated
+          examples:
+            application/json: { "error": false, "message": "business-units update" }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+  /business-units/enabled/{id}:
+    put:
+      tags:
+        - "business-units"
+      security:
+        - Bearer: []
+      summary: Enabled business-units
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: The business-units enabled by ID
+      responses:
+        200:
+          description: business-units enabled
+          examples:
+            application/json: { "error": false, "message": "business-units enabled" }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+  /business-units/disabled/{id}:
+    put:
+      tags:
+        - "business-units"
+      security:
+        - Bearer: []
+      summary: Disabled an business-units
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: The business-units ID
+      responses:
+        200:
+          description: business-units disabled
+          examples:
+            application/json: { "error": false, "message": "business-units disabled" }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+
+  /filiales:
+    get:
+      tags:
+        - "Filiales"
+      security:
+        - Bearer: []
+      summary: get All Filiales
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Filiales
+          examples:
+            application/json:
+              {
+                "count":3,
+                "rows":
+                  [
+                    {
+                      "id": 1,
+                      "code_filiale": "SUNU776",
+                      "filiale_nam": "VCI-34H",
+                      "countries_code": "VCI-34H",
+                      "businessUnit_code": "VCI-34H",
+                      "business_unitId": 1,
+                      "countriesId": 3,
+                      "description": "Un test paragraphe",
+                      "status": 1,
+                      "created_at": null,
+                      "updated_at": null,
+                    },
+                    {
+                      "id": 2,
+                      "code_filiale": "SUNU776",
+                      "filiale_name": "VCI-34H",
+                      "countries_code": "VCI-34H",
+                      "businessUnit_code": "VCI-34H",
+                      "business_unitId": 1,
+                      "countriesId": 3,
+                      "description": "Un test paragraphe",
+                      "status": 1,
+                      "created_at": null,
+                      "updated_at": null,
+                    },
+                    {
+                      "id": 3,
+                      "code_filiale": "SUNU776",
+                      "filiale_nam": "VCI-34H",
+                      "countries_code": "VCI-34H",
+                      "businessUnit_code": "VCI-34H",
+                      "business_unitId": 1,
+                      "countriesId": 3,
+                      "description": "Un test paragraphe",
+                      "status": 1,
+                      "created_at": null,
+                      "updated_at": null,
+                    },
+                  ],
+              }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+    post:
+      tags:
+        - "Filiales"
+      security:
+        - Bearer: []
+      summary: create a Filiales
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: countries_code
+          required: true
+          type: string
+          description: the Name of a Countries
+        - in: formData
+          name: businessUnit_code
+          required: true
+          type: string 
+          description: the Code of a Business-units
+        - in: formData
+          name: code_filiale
+          required: true
+          type: string
+          description: the Code of a Filiales
+        - in: formData
+          name: business_unitId
+          required: true
+          type: integer
+          description: the Id of a business_unit
+        - in: formData
+          name: countriesId
+          required: true
+          type: integer
+          description: the Id of a countries
+        - in: formData
+          name: description
+          required: true
+          type: text
+          description: the description of a Filiales
+      responses:
+        201:
+          description: Filiales
+          examples:
+            application/json:
+              {
+                "error": false,
+                "data":
+                  {
+                    "id": 4,
+                    "filiale_name": "SUNU-DIFIT-TRANS-CIV",
+                    "countries_code": "CIV",
+                    "businessUnit_code": "IARD",
+                    "code_filiale": "VCI-34H",
+                    "countriesId": 1,
+                    "business_unitId": 3,
+                    "description": "Un test paragraphe",
+                    "status": 1,
+                    "created_at": null,
+                    "updated_at": null,
+                  },
+                "message": "Filiales created",
+              }
+        400:
+          description: error
+          examples:
+            application/json: { "error": true, "data": [], "message": error }
+  /filiales/{id}:
+    get:
+      tags:
+        - "Filiales"
+      security:
+        - Bearer: []
+      summary: get the Filiales
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: the ID of a Filiales
+      responses:
+        200:
+          description: Filiales
+          examples:
+            application/json:
+              [
+                {
+                    "id": 4,
+                    "filiale_name": "SUNU-DIFIT-TRANS-CIV",
+                    "countries_code": "CIV",
+                    "businessUnit_code": "IARD",
+                    "code_filiale": "VCI-34H",
+                    "countriesId": 1,
+                    "business_unitId": 3,
+                    "description": "Un test paragraphe",
+                    "status": 1,
+                    "created_at": null,
+                    "updated_at": null,
+                  },
+              ]
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+    put:
+      tags:
+        - "Filiales"
+      security:
+        - Bearer: []
+      summary: Update One Filiales
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: countries_code
+          required: true
+          type: string
+          description: the Name of a Countries
+        - in: formData
+          name: businessUnit_code
+          required: true
+          type: string 
+          description: the Code of a Business-units
+        - in: formData
+          name: code_filiale
+          required: true
+          type: string
+          description: the Code of a Filiales
+        - in: formData
+          name: business_unitId
+          required: true
+          type: integer
+          description: the Id of a business_unit
+        - in: formData
+          name: countriesId
+          required: true
+          type: integer
+          description: the Id of a countries
+        - in: formData
+          name: description
+          required: true
+          type: text
+          description: the description of a Filiales
+      responses:
+        200:
+          description: Filiales updated
+          examples:
+            application/json: { "error": false, "message": "Filiales update" }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+
+  /filiales/enabled/{id}:
+    put:
+      tags:
+        - "Filiales"
+      security:
+        - Bearer: []
+      summary: enabled filiales
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: The filiales enabled by ID
+      responses:
+        200:
+          description: filiales enabled
+          examples:
+            application/json: { "error": false, "message": "filiales enabled" }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+  /filiales/disabled/{id}:
+    put:
+      tags:
+        - "Filiales"
+      security:
+        - Bearer: []
+      summary: disabled an filiales
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: the filiales ID
+      responses:
+        200:
+          description: filiales disabled
+          examples:
+            application/json: { "error": false, "message": "filiales disabled" }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+
+  /branch:
+    get:
+      tags:
+        - "branch"
+      security:
+        - Bearer: []
+      summary: get All branch
+      produces:
+        - application/json
+      responses:
+        200:
+          description: branch
+          examples:
+            application/json:
+              {
+                "count": 3,
+                "rows":
+                  [
+                    {
+                      "id": 1,
+                      "branch_name": "Vie",
+                      "code_branch": "VCI-34H",
+                      "description": "Un test paragraphe",
+                      "status": 1,
+                      "created_at": null,
+                      "updated_at": null,
+                    },
+                    {
+                      "id": 2,
+                      "branch_name": "Non Vie",
+                      "code_branch": "VCI-34H",
+                      "description": "Un test paragraphe",
+                      "status": 1,
+                      "created_at": null,
+                      "updated_at": null,
+                    },
+                    {
+                      "id": 3,
+                      "branch_name": "Mixte",
+                      "code_branch": "VCI-34H",
+                      "description": "Un test paragraphe",
+                      "status": 1,
+                      "created_at": null,
+                      "updated_at": null,
+                    },
+                  ],
+              }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+    post:
+      tags:
+        - "branch"
+      security:
+        - Bearer: []
+      summary: create a branch
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: branch_name
+          required: true
+          type: string
+          description: the Name of a branch
+        - in: formData
+          name: code_branch
+          required: true
+          type: string
+          description: the Code of a branch
+        - in: formData
+          name: description
+          required: true
+          type: text
+          description: the description of a branch
+      responses:
+        201:
+          description: branch
+          examples:
+            application/json:
+              {
+                "error": false,
+                "data":
+                  {
+                    "id": 4,
+                    "branch_name": "Banque",
+                    "code_branch": "VCI-34H",
+                    "description": "Un test paragraphe",
+                    "status": 1,
+                    "created_at": null,
+                    "updated_at": null,
+                  },
+                "message": "branch created",
+              }
+        400:
+          description: error
+          examples:
+            application/json: { "error": true, "data": [], "message": error }
+  /branch/{id}:
+    get:
+      tags:
+        - "branch"
+      security:
+        - Bearer: []
+      summary: get the branch
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: the ID of a branch
+      responses:
+        200:
+          description: branch
+          examples:
+            application/json:
+              [
+                {
+                    "id": 2,
+                    "branch_name": "Banque",
+                    "code_branch": "VCI-34H",
+                    "description": "Un test paragraphe",
+                    "status": 1,
+                    "created_at": null,
+                    "updated_at": null,
+                  },
+              ]
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+    put:
+      tags:
+        - "branch"
+      security:
+        - Bearer: []
+      summary: Update One branch
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: branch_name
+          required: true
+          type: integer
+          description: the Name of a branch
+        - in: formData
+          name: code_branch
+          required: true
+          type: integer
+          description: the Code of a branch
+        - in: formData
+          name: description
+          required: true
+          type: text
+          description: the description of a branch
+      responses:
+        200:
+          description: branch updated
+          examples:
+            application/json: { "error": false, "message": "branch update" }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+
+  /branch/enabled/{id}:
+    put:
+      tags:
+        - "branch"
+      security:
+        - Bearer: []
+      summary: enabled branch
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: The branch enobled by ID
+      responses:
+        200:
+          description: branch enabled
+          examples:
+            application/json: { "error": false, "message": "branch enabled" }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+  /branch/disabled/{id}:
+    put:
+      tags:
+        - "branch"
+      security:
+        - Bearer: []
+      summary: disabled an branch
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: the branch ID
+      responses:
+        200:
+          description: branch disabled
+          examples:
+            application/json:
+              { "error": false, "message": "branch disabled" }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+
+  /branch-filiale:
+    get:
+      tags:
+        - "branch-filiale"
+      security:
+        - Bearer: []
+      summary: get All branch-filiale
+      produces:
+        - application/json
+      responses:
+        200:
+          description: branch-filiale
+          examples:
+            application/json:
+              {
+                "count": 3,
+                "rows":
+                  [
+                    {
+                      "id": 1,
+                      "branch_id": 1,
+                      "filiale_id": 2,
+                      "created_at": null,
+                      "updated_at": null,
+                    },
+                    {
+                      "id": 2,
+                      "branch_id": 2,
+                      "filiale_id": 3,
+                      "created_at": null,
+                      "updated_at": null,
+                    },
+                    {
+                      "id": 3,
+                      "branch_id": 2,
+                      "filiale_id": 3,
+                      "created_at": null,
+                      "updated_at": null,
+                    },
+                  ],
+              }
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }
+    post:
+      tags:
+        - "branch-filiale"
+      security:
+        - Bearer: []
+      summary: create a branch-filiale
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: branch_id
+          required: true
+          type: integer
+          description: the Id of a branch
+        - in: formData
+          name: filiale_id
+          required: true
+          type: integer
+          description: the Id of a filiale
+      responses:
+        201:
+          description: branch-filiale
+          examples:
+            application/json:
+              {
+                "error": false,
+                "data":
+                  {
+                    "id": 4,
+                    "branch_id": 2,
+                    "filiale_id": 3,
+                    "created_at": null,
+                    "updated_at": null,
+                  },
+                "message": "branch attached to filiale ",
+              }
+        400:
+          description: error
+          examples:
+            application/json: { "error": true, "data": [], "message": error }
+  /branch-filiale/{id}:
+    get:
+      tags:
+        - "branch-filiale"
+      security:
+        - Bearer: []
+      summary: get the branch-filiale
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          description: the ID of a branch-filiale
+      responses:
+        200:
+          description: branch-filiale
+          examples:
+            application/json:
+              [
+                {
+                  "id": 1,
+                  "branch_id": 1,
+                  "filiale_id": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                },
+              ]
+        400:
+          description: error
+          examples:
+            application/json: { "error": "error description" }

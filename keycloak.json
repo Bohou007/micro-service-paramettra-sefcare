@@ -1,0 +1,9 @@
+​let kcConfig = {
+    ​clientId: 'myclient',
+    ​bearerOnly: true,
+    ​serverUrl: 'http://localhost:3000/auth',
+    ​realm: 'myrealm',
+    ​realmPublicKey: 'MIIBIjANB...'
+​};
+
+​let keycloak = new Keycloak({ store: memoryStore }, kcConfig)

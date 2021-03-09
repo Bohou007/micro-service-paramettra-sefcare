@@ -1,0 +1,6 @@
+{
+    "node_require.insertAtCursor": true,
+    "node_require.keepFileExtension": true,
+    "node_require.semi": true,
+    "node_require.preserveAcronymCase": true
+}
